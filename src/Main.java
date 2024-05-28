@@ -7,7 +7,7 @@ public class Main {
         GuardaPedidos gp = new GuardaPedidos();
         int op, op2;
         String cliente;
-        Hamburguer item = null;
+        Hamburguer item = null; \\teste
 
         do {
             System.out.println("\n::::::::::::::Menu::::::::::::::\n");

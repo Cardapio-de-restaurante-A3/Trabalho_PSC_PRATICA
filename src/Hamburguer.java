@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class Hamburguer {
+public class Hamburguer { // valor do hambuurguer e adicionar bebida  classe bebida (nome) 
     private String nome;
     private String descricao;
 
@@ -21,7 +21,7 @@ public class Hamburguer {
         return nome + "\n" + descricao;
     }
 
-    private static final List<Hamburguer> hamburgueres = new ArrayList<>();
+    private static final List<Hamburguer> hamburgueres = new ArrayList<>(); // fazer lista de igradientes fazer classe igradiente, ID e nome 
 
     static {
         hamburgueres.add(new Hamburguer("Bacon ++", """

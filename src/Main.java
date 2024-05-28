@@ -14,7 +14,7 @@ public class Main {
             System.out.println("""
                     [1] Fazer Pedido
                     [2] Consultar Pedido
-                    [3] Cancelar
+                    [3] Cancelar Pedido
                     [4] Sair
                     """);
             System.out.println("Escolha uma opção: ");
@@ -25,32 +25,35 @@ public class Main {
                 case 1 -> {
                     System.out.println("Nome do cliente: ");
                     cliente = sc.nextLine();
-                    System.out.println("\n::::::::::::::OPÇÕES::::::::::::::\n");
-                    List<Hamburguer> hamburgueres = Hamburguer.getHamburgueres();
-                    for (int i = 0; i < hamburgueres.size(); i++) {
-                        System.out.println("[" + (i + 1) + "] " + hamburgueres.get(i).getNome());
-                    }
-                    System.out.println("Escolha uma opção: ");
-                    op2 = sc.nextInt();
-                    sc.nextLine();
-                    if (op2 > 0 && op2 <= hamburgueres.size()) {
-                        item = hamburgueres.get(op2 - 1);
-                        System.out.println(item.getDescricao());
-                        System.out.println("Deseja confirmar este pedido?");
-                        System.out.println("[1] Sim  [2]Não");
-                        int confirma = sc.nextInt();
-                        if(confirma != 1 && confirma !=2){
-                            System.out.println("opção invalida");
-                        }
-                        else if(confirma ==1){
-                            gp.adicionarPedido(cliente, item);
-                        }
-                        else if (confirma == 2){
-                            break;
+                    while(true){
+                        System.out.println("\n::::::::::::::OPÇÕES::::::::::::::\n");
+                        List<Hamburguer> hamburgueres = Hamburguer.getHamburgueres();
+                        for (int i = 0; i < hamburgueres.size(); i++) {
+                            System.out.println("[" + (i + 1) + "] " + hamburgueres.get(i).getNome());
                         }
 
-                    } else {
-                        System.out.println("Opção Inválida!");
+                        System.out.println("Escolha uma opção: ");
+                        op2 = sc.nextInt();
+                        sc.nextLine();
+
+                        if (op2 > 0 && op2 <= hamburgueres.size()) {
+                            item = hamburgueres.get(op2 - 1);
+                            System.out.println(item.getDescricao());
+                            System.out.println("Deseja confirmar este pedido?");
+                            System.out.println("[1] Sim  [2]Não");
+                            int confirma = sc.nextInt();
+
+                            if(confirma != 1 && confirma !=2){
+                                System.out.println("opção invalida");
+                            }
+                            else if(confirma ==1){
+                                gp.adicionarPedido(cliente, item);
+                                break;
+                            }                        
+
+                        } else {
+                            System.out.println("Opção Inválida!");
+                        }
                     }
                         
                 }
@@ -68,7 +71,7 @@ public class Main {
                     sc.nextLine();
                     gp.cancelarPedido(numero);
                 }
-                case 4 -> System.out.println("Saindo...");
+                case 4 -> System.out.println("Saindo do programa!");
                 default -> System.out.println("Opção Inválida!");
             }
         } while (op != 4);

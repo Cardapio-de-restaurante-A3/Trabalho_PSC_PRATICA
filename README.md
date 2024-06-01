@@ -1,4 +1,4 @@
-# Leia-me do Sistema de Pedidos de Hamburgueria
+# Sistema de Pedidos de Hamburgueria
 
 ## Descrição
 

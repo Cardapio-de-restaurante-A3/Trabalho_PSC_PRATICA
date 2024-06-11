@@ -1,4 +1,4 @@
-# Sistema de Gestão de Pedidos
+# Sistema de Pedidos de Hamburgueria
 
 Este projeto é um sistema de gerenciamento de pedidos para uma lanchonete. O sistema permite que os clientes façam pedidos de hambúrgueres e bebidas, além de adicionar observações ao pedido, selecionar um método de pagamento, consultar e cancelar pedidos.
 

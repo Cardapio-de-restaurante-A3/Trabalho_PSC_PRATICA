@@ -1,70 +1,96 @@
-# Sistema de Pedidos de Hamburgueria
+# Sistema de Gestão de Pedidos
 
-## Descrição
-
-Este é um sistema de pedidos para uma hamburgueria, desenvolvido em Java. Ele permite aos clientes fazer pedidos de hambúrgueres e bebidas, consultar pedidos existentes, e cancelar pedidos. O sistema armazena os pedidos em uma lista e oferece um menu interativo no console para que os usuários façam suas escolhas.
+Este projeto é um sistema de gerenciamento de pedidos para uma lanchonete. O sistema permite que os clientes façam pedidos de hambúrgueres e bebidas, além de adicionar observações ao pedido, selecionar um método de pagamento, consultar e cancelar pedidos.
 
 ## Estrutura do Projeto
 
-O projeto é composto pelos seguintes arquivos e classes:
+O projeto está dividido em várias classes principais:
 
-1. **Main.java**: Classe principal que contém o menu interativo e a lógica para fazer, consultar e cancelar pedidos.
-2. **Hamburguer.java**: Define a classe `Hamburguer`, representando um hambúrguer com nome, descrição e preço. Esta classe também contém uma lista estática de opções de hambúrgueres.
-3. **Bebida.java**: Define a classe `Bebida`, representando uma bebida com nome e preço. Esta classe também contém uma lista estática de opções de bebidas.
-4. **GuardaPedidos.java**: Define a classe `GuardaPedidos`, que gerencia os pedidos dos clientes. A classe `Pedido` é uma classe interna que representa cada pedido.
+1. **Main**
+2. **Pagamento**
+3. **Hamburguer**
+4. **GuardaPedidos**
+5. **Bebida**
 
-## Funcionalidades
+### 1. Main
 
-### Menu Principal
+A classe `Main` contém o método principal (`main`) que gerencia o fluxo do programa. É responsável por exibir o menu principal, processar a entrada do usuário e chamar os métodos apropriados nas outras classes para fazer, consultar ou cancelar um pedido.
 
-Ao executar o programa, o usuário é apresentado com um menu principal com as seguintes opções:
+### 2. Pagamento
 
-1. **Fazer Pedido**: Permite ao usuário fazer um novo pedido, escolhendo um hambúrguer e uma bebida (opcional).
-2. **Consultar Pedido**: Lista todos os pedidos existentes e permite ao usuário consultar os detalhes de um pedido específico.
-3. **Cancelar Pedido**: Permite ao usuário cancelar um pedido existente.
-4. **Sair**: Encerra o programa.
+A classe `Pagamento` representa os detalhes de pagamento de um pedido. Inclui o tipo de pagamento (dinheiro, cartão de crédito, cartão de débito, PIX) e o valor total.
 
-### Fazer Pedido
+- **Construtor:** `Pagamento(String tipo, double valor)`
+- **Métodos:**
+  - `getTipo()`: Retorna o tipo de pagamento.
+  - `getValor()`: Retorna o valor do pagamento.
+  - `toString()`: Retorna uma string com os detalhes do pagamento.
+  - `static coletarPagamento(Scanner sc, double total)`: Método estático que coleta as informações de pagamento do usuário.
 
-Ao escolher fazer um pedido, o usuário deve fornecer o nome do cliente e selecionar um hambúrguer e uma bebida (opcional) das listas disponíveis. O hambúrguer e a bebida escolhidos são então confirmados antes de serem adicionados ao pedido.
+### 3. Hamburguer
 
-### Consultar Pedido
+A classe `Hamburguer` representa um hambúrguer disponível no cardápio. Cada hambúrguer tem um nome, descrição e preço.
 
-O usuário pode listar todos os pedidos existentes e consultar os detalhes de um pedido específico, fornecendo o número do pedido.
+- **Construtor:** `Hamburguer(String nome, String descricao, double preco)`
+- **Métodos:**
+  - `getNome()`: Retorna o nome do hambúrguer.
+  - `getDescricao()`: Retorna a descrição do hambúrguer.
+  - `getPreco()`: Retorna o preço do hambúrguer.
+  - `toString()`: Retorna uma string com os detalhes do hambúrguer.
+  - `static getHamburgueres()`: Método estático que retorna uma lista de todos os hambúrgueres disponíveis.
 
-### Cancelar Pedido
+### 4. GuardaPedidos
 
-O usuário pode cancelar um pedido existente, fornecendo o número do pedido. O pedido é removido da lista de pedidos.
+A classe `GuardaPedidos` gerencia todos os pedidos feitos pelos clientes. Cada pedido contém o nome do cliente, hambúrguer selecionado, bebida selecionada (opcional), observações e informações de pagamento.
 
-## Classes e Métodos
+- **Classe Interna `Pedido`:** Representa um pedido individual.
+- **Métodos:**
+  - `adicionarPedido(String cliente, Hamburguer hamburguer, Bebida bebida, List<String> observacoes, Pagamento pagamento)`: Adiciona um novo pedido.
+  - `consultarTodosPedidos()`: Exibe todos os pedidos feitos.
+  - `consultarPedido(int numero)`: Consulta um pedido específico pelo número.
+  - `cancelarPedido(int numero)`: Cancela um pedido específico pelo número.
 
-### Main.java
+### 5. Bebida
 
-- **main(String[] args)**: Método principal que exibe o menu e lida com a entrada do usuário.
-- Menu interativo para fazer, consultar e cancelar pedidos.
+A classe `Bebida` representa uma bebida disponível no cardápio. Cada bebida tem um nome e um preço.
 
-### Hamburguer.java
+- **Construtor:** `Bebida(String nome, double preco)`
+- **Métodos:**
+  - `getNome()`: Retorna o nome da bebida.
+  - `getPreco()`: Retorna o preço da bebida.
+  - `toString()`: Retorna uma string com os detalhes da bebida.
+  - `static getBebidas()`: Método estático que retorna uma lista de todas as bebidas disponíveis.
 
-- **Hamburguer(String nome, String descricao, double preco)**: Construtor da classe `Hamburguer`.
-- **getNome()**: Retorna o nome do hambúrguer.
-- **getDescricao()**: Retorna a descrição do hambúrguer.
-- **getPreco()**: Retorna o preço do hambúrguer.
-- **getHamburgueres()**: Retorna a lista estática de hambúrgueres.
+## Funcionamento do Programa
 
-### Bebida.java
+1. **Menu Principal:**
+   - **[1] Fazer Pedido:** Inicia o processo de fazer um pedido.
+   - **[2] Consultar Pedido:** Exibe todos os pedidos e permite consultar um pedido específico.
+   - **[3] Cancelar Pedido:** Cancela um pedido específico pelo número.
+   - **[4] Sair:** Encerra o programa.
 
-- **Bebida(String nome, double preco)**: Construtor da classe `Bebida`.
-- **getNome()**: Retorna o nome da bebida.
-- **getPreco()**: Retorna o preço da bebida.
-- **getBebidas()**: Retorna a lista estática de bebidas.
+2. **Fazer Pedido:**
+   - Solicita o nome do cliente.
+   - Exibe o menu de hambúrgueres e permite que o cliente escolha um hambúrguer.
+   - Exibe o menu de bebidas e permite que o cliente escolha uma bebida ou nenhuma bebida.
+   - Permite que o cliente adicione observações ao pedido.
+   - Coleta as informações de pagamento do cliente.
+   - Adiciona o pedido à lista de pedidos.
 
-### GuardaPedidos.java
+3. **Consultar Pedido:**
+   - Exibe todos os pedidos feitos.
+   - Permite consultar os detalhes de um pedido específico.
 
-- **adicionarPedido(String cliente, Hamburguer hamburguer, Bebida bebida)**: Adiciona um novo pedido à lista de pedidos.
-- **consultarTodosPedidos()**: Exibe todos os pedidos existentes.
-- **consultarPedido(int numero)**: Exibe os detalhes de um pedido específico.
-- **cancelarPedido(int numero)**: Cancela um pedido específico removendo-o da lista de pedidos.
+4. **Cancelar Pedido:**
+   - Solicita o número do pedido a ser cancelado.
+   - Remove o pedido da lista de pedidos.
 
-## Execução
+## Requisitos
 
-Para executar o programa, compile todas as classes e execute a classe `Main`. O menu interativo será exibido no console, permitindo que o usuário faça, consulte e cancele pedidos conforme necessário.
+- **Java:** Certifique-se de ter o JDK instalado para compilar e executar o programa.
+
+## Observações
+
+- A lista de hambúrgueres e bebidas é inicializada com itens pré-definidos.
+- O programa está preparado para lidar com entradas inválidas e solicitações de repetição para opções inválidas.
+- O sistema é simples e pode ser estendido com funcionalidades adicionais, como persistência de dados em banco de dados ou interface gráfica.

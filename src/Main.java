@@ -1,18 +1,19 @@
-import java.util.ArrayList;
-import java.util.List;
+//Classes usadas no codigo
+import java.util.ArrayList;                         
+import java.util.List;                         
 import java.util.Scanner;
-
+//Declara classe Man e o metodo main para iniciar o programa
 public class Main {
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        GuardaPedidos gp = new GuardaPedidos();
-        int op, op2;
-        String cliente;
-        Hamburguer itemHamburguer = null;
+        Scanner sc = new Scanner(System.in);                  //cria objeto Scaner
+        GuardaPedidos gp = new GuardaPedidos();              // cria objeto guarda pedidos
+        int op, op2;                                        // Declara as variaveis de opções
+        String cliente;                                    // Declara a variavel que recebera o nome do cliente 
+        Hamburguer itemHamburguer = null;                 //
         Bebida itemBebida = null;
 
 
-        do {
+        do {                                                             //Menu de opções acessado pelo cliente
             System.out.println("\n::::::::::::::Menu::::::::::::::\n");
             System.out.println("""
                     [1] Fazer Pedido
@@ -23,34 +24,34 @@ public class Main {
                     [6] Sair
                     """);
             System.out.println("Escolha uma opção: ");
-            op = sc.nextInt();
+            op = sc.nextInt();                                      //Lê a opção escolhida pelo cliente
             sc.nextLine();
 
             switch (op) {
                 case 1 -> {
                     System.out.println("Nome do cliente: ");
-                    cliente = sc.nextLine();
+                    cliente = sc.nextLine();                       //Lê o nome que o cliente declarou
 
                     // Escolher um hambúrguer
                     while (true) {
-                        System.out.println("\n::::::::::::::OPÇÕES DE HAMBÚRGUER::::::::::::::\n");
+                        System.out.println("\n::::::::::::::OPÇÕES DE HAMBÚRGUER::::::::::::::\n");       //Exibe a lista de hambúrgues disponiveis
                         List<Hamburguer> hamburgueres = Hamburguer.getHamburgueres();
                         for (int i = 0; i < hamburgueres.size(); i++) {
                             System.out.println("[" + (i + 1) + "] " + hamburgueres.get(i).getNome() + " - R$" + hamburgueres.get(i).getPreco());
                         }
 
                         System.out.println("Escolha uma opção de hambúrguer: ");
-                        op2 = sc.nextInt();
+                        op2 = sc.nextInt();                                                          //Le a opção de hambuerguer escolhida
                         sc.nextLine();
 
-                        if (op2 > 0 && op2 <= hamburgueres.size()) {
+                        if (op2 > 0 && op2 <= hamburgueres.size()) {                                //Verifica de a escolha do hamburguer é valida
                             itemHamburguer = hamburgueres.get(op2 - 1);
                             System.out.println(itemHamburguer.getDescricao());
-                            System.out.println("Deseja confirmar este hambúrguer?");
+                            System.out.println("Deseja confirmar este hambúrguer?");              // Pede ao cliente que confirme a opção escolhida
                             System.out.println("[1] Sim  [2] Não");
                             int confirma = sc.nextInt();
 
-                            if (confirma == 1) {
+                            if (confirma == 1) {                                                        // Se a opção for confirmada entra em um loop para remover ingredientes
                                 sc.nextLine();
 
                                 // Adicionar ou remover ingredientes
@@ -61,13 +62,13 @@ public class Main {
                                     int alterarIngrediente = sc.nextInt();
                                     sc.nextLine();
 
-                                    if (alterarIngrediente == 1) {
-                                        System.out.println("Ingredientes disponíveis para adicionar:");
+                                    if (alterarIngrediente == 1) {                                           
+                                        System.out.println("Ingredientes disponíveis para adicionar:");            //Exibe os ingredientes disponiveis para adicionar
                                         System.out.println("\nIngredientes atuais: " + itemHamburguer.getDescricao());
                                         System.out.println(itemHamburguer.listarIngredientesNumerados());
                                         System.out.println("Escolha um ingrediente para adicionar:");
-                                        int ingredienteNum = sc.nextInt();
-                                        sc.nextLine();
+                                        int ingredienteNum = sc.nextInt();                                          
+                                        sc.nextLine();                                                         //Armazena o ingrediente que novo
                                         
                                         // Verifica se o número do ingrediente é válido
                                         if (ingredienteNum > 0 && ingredienteNum <= hamburgueres.size()) {
@@ -78,8 +79,8 @@ public class Main {
                                             System.out.println("Opção inválida! Escolha um número válido.");
                                         }
                                     
-                                    } else if (alterarIngrediente == 2) {
-                                        System.out.println("Ingredientes atuais:");
+                                    } else if (alterarIngrediente == 2) {                                             // 
+                                        System.out.println("Ingredientes atuais:");                                 // Exibe os ingredientes do hamburguer
                                         System.out.println(itemHamburguer.listarIngredientesNumerados());
                                         System.out.println("Digite o número do ingrediente que deseja remover:");
                                         int numIngrediente = sc.nextInt();
@@ -105,7 +106,7 @@ public class Main {
 
                     // Escolher uma bebida
                     while (true) {
-                        System.out.println("\n::::::::::::::OPÇÕES DE BEBIDA::::::::::::::\n");
+                        System.out.println("\n::::::::::::::OPÇÕES DE BEBIDA::::::::::::::\n");                  //exibe as opções de bebidas
                         List<Bebida> bebidas = Bebida.getBebidas();
                         for (int i = 0; i < bebidas.size(); i++) {
                             System.out.println("[" + (i + 1) + "] " + bebidas.get(i).getNome() + " - R$" + bebidas.get(i).getPreco() + " - " + bebidas.get(i).getUnidade() + " - " + bebidas.get(i).getFabricante());
@@ -139,7 +140,7 @@ public class Main {
                         resposta = sc.nextLine();
                     }
 
-                    double total = itemHamburguer.getPreco();
+                    double total = itemHamburguer.getPreco();                         //calcula o pedido
                     if (itemBebida != null) {
                         total += itemBebida.getPreco();
                     }
@@ -164,8 +165,8 @@ public class Main {
                     sc.nextLine(); // Consome o caractere de nova linha
                     gp.consultarPedidoUnico(numero); // Consulta o pedido específico
                 }
-                case 3 -> {
-                    System.out.println("Digite o índice do pedido que deseja cancelar: ");
+                case 3 -> {               //cancela pedido
+                    System.out.println("Digite o índice do pedido que deseja cancelar: ");                    
                     int index = sc.nextInt();
                     sc.nextLine();
                     Pedido pedido = gp.cancelarPedido(index);

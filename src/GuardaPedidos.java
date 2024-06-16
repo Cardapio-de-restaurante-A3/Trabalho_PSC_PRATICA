@@ -1,21 +1,38 @@
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * A classe GuardaPedidos representa uma coleção de pedidos.
+ */
 public class GuardaPedidos {
     private final List<Pedido> pedidos = new ArrayList<>();
 
+    /**
+     * Adiciona um pedido à lista de pedidos.
+     *
+     * @param pedido O pedido a ser adicionado.
+     */
     public void adicionarPedido(Pedido pedido) {
         pedidos.add(pedido);
     }
 
+    /**
+     * Consulta um pedido pelo índice na lista de pedidos.
+     *
+     * @param index O índice do pedido na lista.
+     * @return O pedido correspondente ao índice, ou null se não encontrado.
+     */
     public Pedido consultarPedido(int index) {
         if (index >= 0 && index < pedidos.size()) {
             return pedidos.get(index);
         }
         return null;
     }
-     // Método para consultar todos os pedidos
-     public void consultarTodosPedidos() {
+
+    /**
+     * Consulta todos os pedidos na lista.
+     */
+    public void consultarTodosPedidos() {
         if (pedidos.isEmpty()) {
             System.out.println("Não há pedidos registrados.");
         } else {
@@ -26,8 +43,13 @@ public class GuardaPedidos {
             }
         }
     }
-     // Método para consultar um pedido específico pelo número
-     public void consultarPedidoUnico(int numero) {
+
+    /**
+     * Consulta um pedido específico pelo número.
+     *
+     * @param numero O número do pedido a ser consultado.
+     */
+    public void consultarPedidoUnico(int numero) {
         if (numero > 0 && numero <= pedidos.size()) {
             System.out.println("Pedido " + numero + ":");
             System.out.println(pedidos.get(numero - 1));
@@ -35,6 +57,13 @@ public class GuardaPedidos {
             System.out.println("Pedido não encontrado!");
         }
     }
+
+    /**
+     * Cancela um pedido pelo índice na lista de pedidos.
+     *
+     * @param index O índice do pedido na lista.
+     * @return O pedido cancelado, ou null se não encontrado.
+     */
     public Pedido cancelarPedido(int index) {
         if (index >= 0 && index < pedidos.size()) {
             return pedidos.remove(index);
@@ -42,9 +71,12 @@ public class GuardaPedidos {
         return null;
     }
 
+    /**
+     * Obtém a lista de pedidos.
+     *
+     * @return A lista de pedidos.
+     */
     public List<Pedido> getPedidos() {
         return pedidos;
     }
-   
-    
 }

@@ -7,7 +7,7 @@ public class Cliente {
     private int idade;
     private String email;
 
-    public Cliente(String nome, int idade, String email) {
+    public Cliente(String nome, int idade, String email) {            //Define o construtor da classe e declara 
         this.nome = nome;
         this.idade = idade;
         this.email = email;

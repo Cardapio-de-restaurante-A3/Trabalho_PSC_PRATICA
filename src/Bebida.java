@@ -7,12 +7,13 @@ public class Bebida {
     private String unidade;
     private String fabricante;
 
-    public Bebida(String nome, double preco, String unidade, String fabricante) {
-        this.nome = nome;
-        this.preco = preco;
-        this.unidade = unidade;
-        this.fabricante = fabricante;
+    public Bebida(String nome, double preco, String unidade, String fabricante) {               //Cria o construtor da classe bebidas 
+        this.nome = nome;                                                                     //Inicia atributo
+        this.preco = preco;                                                                 //Inicia atributo
+        this.unidade = unidade;                                                            //Inicia atributo
+        this.fabricante = fabricante;                                                     //Inicia atributo
     }
+    //Define metodos get publicos para acessar os atributos privados das classes 
 
     public String getNome() {
         return nome;
@@ -30,6 +31,7 @@ public class Bebida {
         return fabricante;
     }
 
+    //Define um método getBebidas estático que retorna uma lista de objetos Bebida
     public static List<Bebida> getBebidas() {
         List<Bebida> bebidas = new ArrayList<>();
         bebidas.add(new Bebida("Coca-Cola lata", 5.00, "350ml", "Coca-Cola Company"));

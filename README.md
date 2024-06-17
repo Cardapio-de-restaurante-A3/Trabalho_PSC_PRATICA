@@ -56,6 +56,14 @@ O projeto está dividido em várias classes principais:
 - Solicita o número do pedido a ser cancelado.
 - Remove o pedido da lista de pedidos.
 
+### Consultar Hambúrguer
+- Exibe cardápio de itens disponíveis.
+- Permite consulta, através do indice inserido, listagem completa de ingredientes que cada um possui.
+
+### Alterar Pedido
+- Solicita indice do pedido cadastrado
+- Exibe lista com itens do pedido atual, dando opções de adicionar ingredientes, remover ou finalizar alteração.
+
 ## Requisitos
 
 - **Java:** Certifique-se de ter o JDK instalado para compilar e executar o programa.

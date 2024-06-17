@@ -6,7 +6,7 @@ Este projeto consiste em um sistema de gerenciamento de pedidos para uma lanchon
 
 ## Estrutura do Projeto
 
-O projeto está dividido em várias classes principais:
+O projeto está dividido nas seguintes classes:
 
 1. **Main**
    - A classe Main contém o método principal (`main`) que gerencia o fluxo do programa. É responsável por exibir o menu principal, processar a entrada do usuário e chamar os métodos apropriados nas outras classes para fazer, consultar ou cancelar um pedido.
@@ -61,7 +61,7 @@ O projeto está dividido em várias classes principais:
 - Permite consulta, através do indice inserido, listagem completa de ingredientes que cada um possui.
 
 ### Alterar Pedido
-- Solicita indice do pedido cadastrado
+- Solicita indice do pedido cadastrado.
 - Exibe lista com itens do pedido atual, dando opções de adicionar ingredientes, remover ou finalizar alteração.
 
 ## Requisitos

@@ -72,4 +72,4 @@ O projeto está dividido em várias classes principais:
 
 - A lista de hambúrgueres e bebidas é inicializada com itens pré-definidos.
 - O programa está preparado para lidar com entradas inválidas e solicitações de repetição para opções inválidas.
-- O sistema é simples e pode ser estendido com funcionalidades adicionais, como persistência de dados em banco de dados ou interface gráfica.
+

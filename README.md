@@ -33,7 +33,9 @@ O projeto está dividido em várias classes principais:
 - [1] Fazer Pedido: Inicia o processo de fazer um pedido.
 - [2] Consultar Pedido: Exibe todos os pedidos e permite consultar um pedido específico.
 - [3] Cancelar Pedido: Cancela um pedido específico pelo número.
-- [4] Sair: Encerra o programa.
+- [4] Consultar Hamrbúrguer: Exibe uma lista dos hamburgueres, solicitando uma opção para listar os ingredientes de cada um.
+- [5] Alterar Pedido: Alterar informações de um pedido
+- [6] Sair: Encerra o programa.
 
 ### Fazer Pedido:
 

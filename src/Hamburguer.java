@@ -1,44 +1,88 @@
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Uma classe que representa um hambúrguer com um nome, preço e lista de ingredientes.
+ */
 public class Hamburguer {
     private String nome;
     private double preco;
     private List<String> ingredientes;
 
+    /**
+     * Constrói uma instância de Hamburguer com o nome, preço e lista de ingredientes especificados.
+     *
+     * @param nome         o nome do hambúrguer
+     * @param preco        o preço do hambúrguer
+     * @param ingredientes a lista de ingredientes do hambúrguer
+     */
     public Hamburguer(String nome, double preco, List<String> ingredientes) {
         this.nome = nome;
         this.preco = preco;
         this.ingredientes = new ArrayList<>(ingredientes);
     }
 
+    /**
+     * Obtém o nome do hambúrguer.
+     *
+     * @return o nome do hambúrguer
+     */
     public String getNome() {
         return nome;
     }
 
+    /**
+     * Obtém o preço do hambúrguer.
+     *
+     * @return o preço do hambúrguer
+     */
     public double getPreco() {
         return preco;
     }
 
+    /**
+     * Obtém a descrição do hambúrguer, incluindo seu nome e ingredientes.
+     *
+     * @return a descrição do hambúrguer
+     */
     public String getDescricao() {
         return nome + " - Ingredientes: " + String.join(", ", ingredientes);
     }
 
+    /**
+     * Obtém a lista de ingredientes do hambúrguer.
+     *
+     * @return a lista de ingredientes
+     */
     public List<String> getIngredientes() {
         return ingredientes;
     }
 
+    /**
+     * Adiciona um ingrediente à lista de ingredientes.
+     *
+     * @param ingrediente o ingrediente a ser adicionado
+     */
     public void adicionarIngrediente(String ingrediente) {
         ingredientes.add(ingrediente);
-        
     }
 
+    /**
+     * Remove um ingrediente da lista de ingredientes pelo índice.
+     *
+     * @param index o índice do ingrediente a ser removido
+     */
     public void removerIngrediente(int index) {
         if (index >= 0 && index < ingredientes.size()) {
             ingredientes.remove(index);
         }
     }
 
+    /**
+     * Lista os ingredientes do hambúrguer em formato numerado.
+     *
+     * @return uma string com a lista numerada de ingredientes
+     */
     public String listarIngredientesNumerados() {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < ingredientes.size(); i++) {
@@ -47,6 +91,11 @@ public class Hamburguer {
         return sb.toString();
     }
 
+    /**
+     * Gera uma lista de instâncias de Hamburguer pré-definidas.
+     *
+     * @return uma lista de objetos Hamburguer
+     */
     public static List<Hamburguer> getHamburgueres() {
         List<Hamburguer> hamburgueres = new ArrayList<>();
 
@@ -149,5 +198,4 @@ public class Hamburguer {
 
         return hamburgueres;
     }
-
 }

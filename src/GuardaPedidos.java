@@ -2,14 +2,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * A classe GuardaPedidos representa uma coleção de pedidos.
+ * Responsável por gerenciar os pedidos registrados.
  */
 public class GuardaPedidos {
-    private final List<Pedido> pedidos = new ArrayList<>();
+    private final List<Pedido> pedidos = new ArrayList<>(); // Lista de pedidos registrados
 
     /**
-     * Adiciona um pedido à lista de pedidos.
-     *
+     * Adiciona um novo pedido à lista de pedidos.
      * @param pedido O pedido a ser adicionado.
      */
     public void adicionarPedido(Pedido pedido) {
@@ -17,20 +16,19 @@ public class GuardaPedidos {
     }
 
     /**
-     * Consulta um pedido pelo índice na lista de pedidos.
-     *
-     * @param index O índice do pedido na lista.
-     * @return O pedido correspondente ao índice, ou null se não encontrado.
+     * Consulta um pedido na lista de pedidos pelo índice.
+     * @param índice O índice do pedido a ser consultado.
+     * @return O pedido encontrado ou null se não encontrado.
      */
-    public Pedido consultarPedido(int index) {
-        if (index >= 0 && index < pedidos.size()) {
-            return pedidos.get(index);
+    public Pedido consultarPedido(int índice) {
+        if (índice >= 0 && índice < pedidos.size()) {
+            return pedidos.get(índice);
         }
         return null;
     }
 
     /**
-     * Consulta todos os pedidos na lista.
+     * Consulta todos os pedidos registrados e exibe na tela.
      */
     public void consultarTodosPedidos() {
         if (pedidos.isEmpty()) {
@@ -45,8 +43,7 @@ public class GuardaPedidos {
     }
 
     /**
-     * Consulta um pedido específico pelo número.
-     *
+     * Consulta um pedido específico pelo número na lista de pedidos.
      * @param numero O número do pedido a ser consultado.
      */
     public void consultarPedidoUnico(int numero) {
@@ -59,22 +56,20 @@ public class GuardaPedidos {
     }
 
     /**
-     * Cancela um pedido pelo índice na lista de pedidos.
-     *
-     * @param index O índice do pedido na lista.
-     * @return O pedido cancelado, ou null se não encontrado.
+     * Cancela um pedido na lista de pedidos pelo índice.
+     * @param índice O índice do pedido a ser cancelado.
+     * @return O pedido cancelado ou null se não encontrado.
      */
-    public Pedido cancelarPedido(int index) {
-        if (index >= 0 && index < pedidos.size()) {
-            return pedidos.remove(index);
+    public Pedido cancelarPedido(int índice) {
+        if (índice >= 0 && índice < pedidos.size()) {
+            return pedidos.remove(índice);
         }
         return null;
     }
 
     /**
-     * Obtém a lista de pedidos.
-     *
-     * @return A lista de pedidos.
+     * Retorna a lista de todos os pedidos registrados.
+     * @return A lista de pedidos registrados.
      */
     public List<Pedido> getPedidos() {
         return pedidos;

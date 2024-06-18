@@ -2,14 +2,14 @@ import java.util.Scanner;
 import java.util.UUID;
 
 /**
- * A classe Pagamento representa um pagamento realizado em uma transação.
+ * Representa um pagamento realizado em uma transação.
  */
 public class Pagamento {
-    private double valorPago;
-    private String metodoPagamento;
+    private double valorPago; // Valor pago na transação
+    private String metodoPagamento; // Método de pagamento utilizado
 
     /**
-     * Construtor da classe Pagamento.
+     * Construtor para a classe Pagamento.
      * @param valorPago O valor pago na transação.
      * @param metodoPagamento O método de pagamento utilizado.
      */
@@ -19,10 +19,10 @@ public class Pagamento {
     }
 
     /**
-     * Coleta as informações do pagamento a partir de entrada do usuário.
-     * @param sc O objeto Scanner para entrada de dados.
-     * @param total O valor total da transação.
-     * @return Um objeto Pagamento com as informações coletadas.
+     * Método estático para coletar informações de pagamento do usuário.
+     * @param sc Scanner para coletar entrada do usuário.
+     * @param total O valor total a ser pago.
+     * @return Um objeto Pagamento representando a transação.
      */
     public static Pagamento coletarPagamento(Scanner sc, double total) {
         System.out.println("Escolha o método de pagamento:");
@@ -31,6 +31,9 @@ public class Pagamento {
         sc.nextLine(); // Consome o caractere de nova linha
 
         if (opcaoPagamento == 1) {
+            /**
+             * Opção de pagamento em dinheiro.
+             */
             System.out.println("Digite o valor pago em dinheiro: ");
             double valorPago = sc.nextDouble();
             sc.nextLine(); // Consome o caractere de nova linha
@@ -44,9 +47,15 @@ public class Pagamento {
             return new Pagamento(valorPago, "Dinheiro");
 
         } else if (opcaoPagamento == 2) {
+            /**
+             * Opção de pagamento com cartão.
+             */
             System.out.println("Pagamento com cartão realizado com sucesso.");
             return new Pagamento(total, "Cartão");
         } else if(opcaoPagamento == 3){
+            /**
+             * Opção de pagamento com Pix.
+             */
             System.out.println("Essa é a nossa chave pix");
             UUID uuid = UUID.randomUUID();
             // Converter o UUID para string e remover os traços
@@ -54,15 +63,18 @@ public class Pagamento {
             // Exibir a chave PIX gerada
             System.out.println("Chave PIX gerada: " + pixKey);
             return new Pagamento(total, "Pix");
-        } else {
+        }else {
+            /**
+             * Opção inválida de pagamento.
+             */
             System.out.println("Opção inválida. Tente novamente.");
             return coletarPagamento(sc, total); // Recursão para tentar novamente
         }
     }
 
     /**
-     * Retorna uma representação em string do pagamento.
-     * @return Uma string contendo o método de pagamento e o valor pago.
+     * Retorna uma representação em string do pagamento, incluindo informações sobre o método de pagamento e o valor pago.
+     * @return Uma representação em string do pagamento.
      */
     @Override
     public String toString() {

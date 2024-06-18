@@ -2,20 +2,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * A classe Bebida representa uma bebida com seu nome, preço, unidade e fabricante.
+ * Representa uma bebida disponível para compra.
  */
 public class Bebida {
-    private String nome;
-    private double preco;
-    private String unidade;
-    private String fabricante;
+    private String nome;        // Nome da bebida
+    private double preco;       // Preço da bebida
+    private String unidade;     // Unidade da bebida (ex: ml, L)
+    private String fabricante;  // Fabricante da bebida
 
     /**
-     * Construtor da classe Bebida.
-     *
-     * @param nome       O nome da bebida.
-     * @param preco      O preço da bebida.
-     * @param unidade    A unidade da bebida (por exemplo, ml, lata, garrafa, etc.).
+     * Cria uma nova bebida com os detalhes fornecidos.
+     * @param nome O nome da bebida.
+     * @param preco O preço da bebida.
+     * @param unidade A unidade da bebida (ex: ml, L).
      * @param fabricante O fabricante da bebida.
      */
     public Bebida(String nome, double preco, String unidade, String fabricante) {
@@ -26,47 +25,42 @@ public class Bebida {
     }
 
     /**
-     * Retorna o nome da bebida.
-     *
+     * Obtém o nome da bebida.
      * @return O nome da bebida.
      */
-    public String retornaNome() {
+    public String getNome() {
         return nome;
     }
 
     /**
-     * Retorna o preço da bebida.
-     *
+     * Obtém o preço da bebida.
      * @return O preço da bebida.
      */
-    public double retornaPreco() {
+    public double getPreco() {
         return preco;
     }
 
     /**
-     * Retorna a unidade da bebida.
-     *
+     * Obtém a unidade da bebida.
      * @return A unidade da bebida.
      */
-    public String retornaUnidade() {
+    public String getUnidade() {
         return unidade;
     }
 
     /**
-     * Retorna o fabricante da bebida.
-     *
+     * Obtém o fabricante da bebida.
      * @return O fabricante da bebida.
      */
-    public String retornaFabricante() {
+    public String getFabricante() {
         return fabricante;
     }
 
     /**
-     * Retorna uma lista de bebidas pré-definidas.
-     *
-     * @return Uma lista de objetos Bebida.
+     * Obtém uma lista de bebidas disponíveis para compra.
+     * @return Uma lista de bebidas disponíveis.
      */
-    public static List<Bebida> retornaBebidas() {
+    public static List<Bebida> getBebidas() {
         List<Bebida> bebidas = new ArrayList<>();
         bebidas.add(new Bebida("Coca-Cola lata", 5.00, "350ml", "Coca-Cola Company"));
         bebidas.add(new Bebida("Guaraná Antarctica lata", 4.50, "350ml", "Ambev"));

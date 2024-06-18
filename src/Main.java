@@ -1,19 +1,26 @@
-//Classes usadas no codigo
-import java.util.ArrayList;                         
-import java.util.List;                         
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
-//Declara classe Man e o metodo main para iniciar o programa
+/**
+ * A classe principal que contém o método main para executar o programa de pedidos.
+ */
 public class Main {
+/**
+* O método principal que inicia a execução do programa.
+* 
+*/
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);                  //cria objeto Scaner
-        GuardaPedidos gp = new GuardaPedidos();              // cria objeto guarda pedidos
-        int op, op2;                                        // Declara as variaveis de opções
-        String cliente;                                    // Declara a variavel que recebera o nome do cliente 
-        Hamburguer itemHamburguer = null;                 //
+        Scanner sc = new Scanner(System.in);
+        GuardaPedidos gp = new GuardaPedidos();
+        int op, op2;
+        String cliente;
+        Hamburguer itemHamburguer = null;
         Bebida itemBebida = null;
-
-
-        do {                                                             //Menu de opções acessado pelo cliente
+/**
+* Loop principal do menu do programa, que permite ao usuário fazer,
+* cancelar e alterar pedidos, além de consultar hambúrgueres.
+*/
+        do {
             System.out.println("\n::::::::::::::Menu::::::::::::::\n");
             System.out.println("""
                     [1] Fazer Pedido
@@ -24,53 +31,69 @@ public class Main {
                     [6] Sair
                     """);
             System.out.println("Escolha uma opção: ");
-            op = sc.nextInt();                                      //Lê a opção escolhida pelo cliente
+            op = sc.nextInt();
             sc.nextLine();
-
+/**
+ * O bloco de código principal do menu switch-case que lida com a opção de "Fazer Pedido".
+ */
             switch (op) {
+                /**
+                * Solicita o nome do cliente e armazena a entrada.
+                */
                 case 1 -> {
                     System.out.println("Nome do cliente: ");
-                    cliente = sc.nextLine();                       //Lê o nome que o cliente declarou
-
-                    // Escolher um hambúrguer
+                    cliente = sc.nextLine();
+                    /**
+                    * Bloco de código para a escolha de um hambúrguer pelo cliente.
+                    *
+                    * Escolher um hambúrguer
+                    */
                     while (true) {
-                        System.out.println("\n::::::::::::::OPÇÕES DE HAMBÚRGUER::::::::::::::\n");       //Exibe a lista de hambúrgues disponiveis
+                        System.out.println("\n::::::::::::::OPÇÕES DE HAMBÚRGUER::::::::::::::\n");
                         List<Hamburguer> hamburgueres = Hamburguer.getHamburgueres();
                         for (int i = 0; i < hamburgueres.size(); i++) {
                             System.out.println("[" + (i + 1) + "] " + hamburgueres.get(i).getNome() + " - R$" + hamburgueres.get(i).getPreco());
                         }
-
+                         /**
+                        * Solicita ao cliente que escolha uma opção de hambúrguer.
+                        */
                         System.out.println("Escolha uma opção de hambúrguer: ");
-                        op2 = sc.nextInt();                                                          //Le a opção de hambuerguer escolhida
+                        op2 = sc.nextInt();
                         sc.nextLine();
 
-                        if (op2 > 0 && op2 <= hamburgueres.size()) {                                //Verifica de a escolha do hamburguer é valida
+                        if (op2 > 0 && op2 <= hamburgueres.size()) {
                             itemHamburguer = hamburgueres.get(op2 - 1);
                             System.out.println(itemHamburguer.getDescricao());
-                            System.out.println("Deseja confirmar este hambúrguer?");              // Pede ao cliente que confirme a opção escolhida
+                            System.out.println("Deseja confirmar este hambúrguer?");
                             System.out.println("[1] Sim  [2] Não");
                             int confirma = sc.nextInt();
 
-                            if (confirma == 1) {                                                        // Se a opção for confirmada entra em um loop para remover ingredientes
+                            if (confirma == 1) {
                                 sc.nextLine();
-
-                                // Adicionar ou remover ingredientes
+                            /**
+                            * Bloco de código para adicionar ou remover ingredientes do hambúrguer.
+                            *
+                            * Adicionar ou remover ingredientes
+                            */
                                 while (true) {
                                     System.out.println("\nIngredientes atuais: " + itemHamburguer.getDescricao());
                                     System.out.println("\nDeseja adicionar ou remover algum ingrediente?");
                                     System.out.println("[1] Adicionar  [2] Remover  [3] Finalizar");
                                     int alterarIngrediente = sc.nextInt();
                                     sc.nextLine();
-
-                                    if (alterarIngrediente == 1) {                                           
-                                        System.out.println("Ingredientes disponíveis para adicionar:");            //Exibe os ingredientes disponiveis para adicionar
+                                    /**
+                                    * Se o usuário escolhe adicionar um ingrediente.
+                                    */
+                                    if (alterarIngrediente == 1) {
+                                        System.out.println("Ingredientes disponíveis para adicionar:");
                                         System.out.println("\nIngredientes atuais: " + itemHamburguer.getDescricao());
                                         System.out.println(itemHamburguer.listarIngredientesNumerados());
                                         System.out.println("Escolha um ingrediente para adicionar:");
-                                        int ingredienteNum = sc.nextInt();                                          
-                                        sc.nextLine();                                                         //Armazena o ingrediente que novo
-                                        
-                                        // Verifica se o número do ingrediente é válido
+                                        int ingredienteNum = sc.nextInt();
+                                        sc.nextLine();
+                                        /**
+                                        * Verifica se o número do ingrediente é válido.
+                                        */
                                         if (ingredienteNum > 0 && ingredienteNum <= hamburgueres.size()) {
                                             String ingrediente = "Novo ingrediente";
                                             itemHamburguer.adicionarIngrediente(ingrediente);
@@ -78,14 +101,19 @@ public class Main {
                                         } else {
                                             System.out.println("Opção inválida! Escolha um número válido.");
                                         }
-                                    
-                                    } else if (alterarIngrediente == 2) {                                             // 
-                                        System.out.println("Ingredientes atuais:");                                 // Exibe os ingredientes do hamburguer
+                                        /**
+                                        * Se o usuário escolhe remover um ingrediente.
+                                        */
+                                    } else if (alterarIngrediente == 2) {
+                                        System.out.println("Ingredientes atuais:");
                                         System.out.println(itemHamburguer.listarIngredientesNumerados());
                                         System.out.println("Digite o número do ingrediente que deseja remover:");
                                         int numIngrediente = sc.nextInt();
                                         sc.nextLine();
                                         itemHamburguer.removerIngrediente(numIngrediente - 1);
+                                        /**
+                                        * Se o usuário escolhe finalizar a modificação dos ingredientes.
+                                        */
                                     } else if (alterarIngrediente == 3) {
                                         break;
                                     } else {
@@ -103,16 +131,19 @@ public class Main {
                             System.out.println("Opção inválida!");
                         }
                     }
-
-                    // Escolher uma bebida
+                    /**
+                    * Lógica para escolher uma bebida.
+                    */
                     while (true) {
-                        System.out.println("\n::::::::::::::OPÇÕES DE BEBIDA::::::::::::::\n");                  //exibe as opções de bebidas
+                        System.out.println("\n::::::::::::::OPÇÕES DE BEBIDA::::::::::::::\n");
                         List<Bebida> bebidas = Bebida.getBebidas();
                         for (int i = 0; i < bebidas.size(); i++) {
                             System.out.println("[" + (i + 1) + "] " + bebidas.get(i).getNome() + " - R$" + bebidas.get(i).getPreco() + " - " + bebidas.get(i).getUnidade() + " - " + bebidas.get(i).getFabricante());
                         }
                         System.out.println("[0] Sem bebida");
-
+                        /**
+                        * Solicita ao usuário que escolha uma bebida.
+                        */
                         System.out.println("Escolha uma opção de bebida: ");
                         op2 = sc.nextInt();
                         sc.nextLine();
@@ -128,7 +159,9 @@ public class Main {
                         }
                     }
 
-                    // Adicionar observações
+                    /**
+                    * Bloco de código para adicionar observações ao pedido.
+                    */
                     List<String> observacoes = new ArrayList<>();
                     System.out.println("Deseja adicionar alguma observação? [S/N]");
                     String resposta = sc.nextLine();
@@ -139,37 +172,61 @@ public class Main {
                         System.out.println("Deseja adicionar outra observação? [S/N]");
                         resposta = sc.nextLine();
                     }
-
-                    double total = itemHamburguer.getPreco();                         //calcula o pedido
+                    /**
+                    * Calcula o total do pedido.
+                    */
+                    double total = itemHamburguer.getPreco();
                     if (itemBebida != null) {
                         total += itemBebida.getPreco();
                     }
                     System.out.println("Total do pedido: R$" + total);
-
+                    /**
+                    * Coleta o pagamento do usuário.
+                    */
                     Pagamento pagamento = Pagamento.coletarPagamento(sc, total);
-
+                    /**
+                    * Cria um novo pedido e adiciona ao sistema de pedidos.
+                    */
                     Pedido pedido = new Pedido(cliente, itemHamburguer, itemBebida, observacoes, pagamento);
                     gp.adicionarPedido(pedido);
 
                     System.out.println("Pedido realizado com sucesso!");
                     System.out.println(pedido);
                 }
-                case 2 -> {
-                    // Processo para consultar pedidos
+                    /**
+                     * Caso para consultar pedidos.
+                     */
+                    case 2 -> {
+                    /**
+                    * Consulta todos os pedidos disponíveis.
+                    */
                     gp.consultarTodosPedidos(); // Consulta todos os pedidos
                     System.out.println("Digite o número do pedido que deseja consultar, ou [0] para sair: ");
                     int numero = sc.nextInt(); // Lê o número do pedido a ser consultado
+                    /**
+                    * Sai do case se o número do pedido for 0.
+                    */
                     if (numero==0){
                         break;
                     }
                     sc.nextLine(); // Consome o caractere de nova linha
                     gp.consultarPedidoUnico(numero); // Consulta o pedido específico
                 }
-                case 3 -> {               //cancela pedido
-                    System.out.println("Digite o índice do pedido que deseja cancelar: ");                    
+                     /**
+                     * Caso para cancelar um pedido.
+                     */
+                    case 3 -> {
+                    /**
+                    * Consulta todos os pedidos disponíveis.
+                    */
+                    gp.consultarTodosPedidos();
+                    System.out.println("Digite o índice do pedido que deseja cancelar: ");
                     int index = sc.nextInt();
                     sc.nextLine();
-                    Pedido pedido = gp.cancelarPedido(index);
+                    /**
+                    * Cancela o pedido no índice especificado.
+                    */
+                    Pedido pedido = gp.cancelarPedido(index -1);
 
                     if (pedido != null) {
                         System.out.println("Pedido cancelado com sucesso!");
@@ -177,7 +234,13 @@ public class Main {
                         System.out.println("Pedido não encontrado!");
                     }
                 }
+                /**
+                * Caso para consultar hambúrgueres.
+                */
                 case 4 -> {
+                    /**
+                    * Loop para mostrar opções de hambúrgueres.
+                    */
                     while (true) {
                         System.out.println("\n::::::::::::::OPÇÕES DE HAMBÚRGUER::::::::::::::\n");
                         List<Hamburguer> hamburgueres = Hamburguer.getHamburgueres();
@@ -198,8 +261,13 @@ public class Main {
                         }
                     }
                 }
+                /**
+                * Caso para alterar um pedido.
+                */
                 case 5 -> {
-                    // Mostrar todos os pedidos feitos
+                    /**
+                    * Mostra todos os pedidos feitos.
+                    */
                     List<Pedido> todosPedidos = gp.getPedidos();
                     if (todosPedidos.isEmpty()) {
                         System.out.println("Nenhum pedido foi feito ainda.");
@@ -215,10 +283,15 @@ public class Main {
                         Pedido pedido = gp.consultarPedido(index-1);
                 
                         if (pedido != null) {
+                            /**
+                            * Exibe o pedido selecionado e permite alterações.
+                            */
                             System.out.println("Detalhes do Pedido:");
                             System.out.println(pedido);
                 
-                            // Alterar ingredientes do hambúrguer
+                            /**
+                            * Loop para permitir adicionar, remover ou finalizar a alteração dos ingredientes do hambúrguer de um pedido.
+                            */
                             Hamburguer hamburguer = pedido.getHamburguer();
                             while (true) {
                                 System.out.println("\nIngredientes atuais: " + hamburguer.getDescricao());
@@ -228,6 +301,9 @@ public class Main {
                                 sc.nextLine();
 
                             if (alterarIngrediente == 1) {
+                                /**
+                                * Adiciona um novo ingrediente ao hambúrguer.
+                                */
                                 System.out.println("Ingredientes disponíveis para adicionar:");
                                 System.out.println(itemHamburguer.listarIngredientesNumerados());
                                 System.out.println("Escolha um ingrediente para adicionar:");
@@ -242,6 +318,9 @@ public class Main {
                                 }
                             
                             } else if (alterarIngrediente == 2) {
+                                /**
+                                * Remove um ingrediente do hambúrguer.
+                                */
                                 System.out.println("Ingredientes atuais:");
                                 System.out.println(hamburguer.listarIngredientesNumerados());
                                 System.out.println("Digite o número do ingrediente que deseja remover:");
@@ -249,6 +328,9 @@ public class Main {
                                 sc.nextLine();
                                 hamburguer.removerIngrediente(numIngrediente - 1);
                             } else if (alterarIngrediente == 3) {
+                                /**
+                                * Finaliza a alteração dos ingredientes do hambúrguer.
+                                */
                                 break;
                             } else {
                                 System.out.println("Opção inválida!");
@@ -257,6 +339,9 @@ public class Main {
 
                         // Alterar bebida
                         while (true) {
+                            /**
+                            * Loop para permitir escolher uma bebida para o pedido.
+                            */
                             System.out.println("\n::::::::::::::OPÇÕES DE BEBIDA::::::::::::::\n");
                             List<Bebida> bebidas = Bebida.getBebidas();
                             for (int i = 0; i < bebidas.size(); i++) {
@@ -279,11 +364,16 @@ public class Main {
                             }
                         }
 
-                        // Atualizar observações
+                        /**
+                        * Loop para permitir adicionar observações ao pedido e finalizar a alteração.
+                        */
                         List<String> observacoes = new ArrayList<>();
                         System.out.println("Deseja adicionar alguma observação? [S/N]");
                         String resposta = sc.nextLine();
                         while (resposta.equalsIgnoreCase("S")) {
+                            /**
+                            * Loop para adicionar observações ao pedido.
+                            */
                             System.out.println("Digite a observação: ");
                             String observacao = sc.nextLine();
                             observacoes.add(observacao);

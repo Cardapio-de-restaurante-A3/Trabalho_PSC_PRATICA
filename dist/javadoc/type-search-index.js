@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"Hamburgueria","l":"Bebida"},{"p":"Hamburgueria","l":"GuardaPedidos"},{"p":"Hamburgueria","l":"Hamburguer"},{"p":"Hamburgueria","l":"Main"},{"p":"Hamburgueria","l":"Pagamento"},{"p":"Hamburgueria","l":"Pedido"}];updateSearchResults();
